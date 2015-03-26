@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="ToDoList">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="shortcut icon" href="src/rp_logo.ico" />
+		<title>Things To do</title>
+		<script src="built.min/built.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+		
+		<script type="text/javascript" src="js/script.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/reset.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+
+	<body ng-controller="toDoCtrl">
+		<div>
+		 <a href=""  id="email">Hi &nbsp; {{ userEmail }} !</a>
+		  <a href="login.html"  id="logout">[ Logout ]</a>
+		</div>
+	<span style="color:white">	{{ toDoBox }} </span>
+		<h2> {{appTitle}} </h2>
+
+		<input type="text" ng-model="searchText" class="preview-text search" placeholder="Search.."></input>
+
+		<!-- list -->
+		<ul ng-repeat="toDo in toDoBox | filter:searchText ">
+
+			<li ng-dblclick="startEditing(toDo);">
+				
+				<input  type="checkbox"  id="cb{{$index+1}}" class="graphic" ng-model="toDo.done"/>
+				<label for="cb{{$index+1}}" ng-hide="toDo.editing"></label>
+				<span class="li-text" ng-hide="toDo.editing" ng-class="{'done':toDo.done}"> {{toDo.text}} </span>
+
+				<form name = "myform" ng-submit="doneEditing(toDo)" ng-show="toDo.editing">
+					<input class="preview-text edit" ng-model="toDo.text" ng-blur="doneEditing(toDo)" ng-focus="toDo == editedToDo"/>
+				</form>
+			
+			</li>
+			<li>	
+
+				<a href="" class="up" ng-click="move($index,'up')">&#10140;</a>
+				<a href="" class="down" ng-click="move($index,'down')">&#6662;</a>
+				<a href="" class="remove" ng-click="removeToDo(toDo)"> &#10008;</a>
+
+			</li>
+
+		</ul>
+
+	<div class="preview" ng-show='toDoText'>
+		<input type="checkbox" disabled="true"/>
+		<input class="preview-text temp" type="text" disabled="true" placeholder="{{toDoText}}"/>
+	</div>
+
+	<form class="form" name="form" ng-submit="addToDo()">
+
+		<input class="preview-text"  name="myfield" type="text" ng-model="toDoText" placeholder="wht's to be done?" required />
+		<button id="submit" type="submit" value="ss" class="submit">
+			<span class="add"></span> 
+		</button> 
+		<br>
+		<button class="submit" ng-click="clearCompleted()">
+			<span class="clear-c"></span>
+		</button>
+
+	</form>
+
+	<button ng-click="clearAll()">clearAll</button>
+	<!-- <button ng-click="save()">save</button> -->
+</body>
+</html>
+subtask
+total number of task(bottom)
