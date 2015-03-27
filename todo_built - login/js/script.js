@@ -3,7 +3,7 @@ var mainApp = angular.module("ToDoList", []);
 var app = Built.App('blt88bb2dd31595210c').persistSessionWith(Built.Session.LOCAL_STORAGE);
 var appUser = app.User();
 var appClass = app.Class('toDo');
-var session = app.User.getSession()
+var session = app.User.getSession();
 
 var query = app.Class('toDo').Query();
 var toDoClass = app.Class('toDo').Object;
@@ -47,8 +47,6 @@ mainApp.controller("toDoCtrl", ['$scope',
                     });
             })
 
-
-
         $scope.addToDo = function() {
 
             //save details
@@ -68,7 +66,8 @@ mainApp.controller("toDoCtrl", ['$scope',
                     })
                         .save()
                         .then(function(object) {
-
+                            
+                     
                                 $scope.toDoBox.push({
                                     uid: object.data.uid,
                                     done: false,
@@ -78,6 +77,9 @@ mainApp.controller("toDoCtrl", ['$scope',
 
                                 $scope.$apply();
                                 console.log($scope.toDoBox);
+
+                               
+
 
                             }
 
@@ -217,7 +219,7 @@ mainApp.controller("toDoCtrl", ['$scope',
 
                 if ($scope.toDoBox[i].uid === toDo.uid) {
 
-                    alert($scope.toDoBox[i].uid + "same" + toDo.uid);
+                    alert($scope.toDoBox[i].uid + " same " + toDo.uid);
                     $scope.toDoBox[i].editing = true;
                     console.log($scope.toDoBox[i]);                  
                  
@@ -253,10 +255,37 @@ mainApp.controller("toDoCtrl", ['$scope',
                 })
         };
 
-
+        $scope.logout = function() {
+            app.User.clearSession();
+           console.log("clear session!!");
+           window.addEventListener('storage', storageChange, false);
+       /*    var currUser = app.User();
+            
+            currUser.logout().then(function(res){
+              // do something here
+               console.log("clear session!!");
+                 window.open("login.html","_self");
+            });
+  */         
+     };
 
 
     }
 
-
 ]);
+
+function checkSession2(){
+    var currentUser = app.User;
+      if(currentUser.isAuthenticated()){
+                   console.log("auth");
+                }else {
+                      console.log("NOT auth");
+                       window.location = 'logout.html';
+                }
+   }
+
+function storageChange(event) {
+    if(event.key == 'logged_in') {
+        alert('Logged in: ' + event.newValue);
+    }
+}

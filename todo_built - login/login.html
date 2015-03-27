@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="toDoLogin">
+<html>
     <head>
         <meta charset="UTF-8">
         <link rel="shortcut icon" href="src/rp_logo.ico" />
@@ -7,11 +7,11 @@
         
         <link rel="stylesheet" type="text/css" href="css/reset.css">
         <script src="built.min/built.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        
         <script src="js/login_script.js"></script>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
     </head>
-    <body>
+    <body onload="checkSession()">
         
         <div class="backdrop"></div>
         
@@ -23,10 +23,10 @@
                 </h3>
             </div>
             
-            <div class="login" ng-controller="login">
+            <div class="login">
                 <form name = "myform">
                     <input type="text"  placeholder="username" id="username" name="username" value=""><br>
-                    <input type="password" placeholder="password" id="password" name="password" value=""><br>
+                    <input type="password" placeholder="password" id="password" name="password" value="" onkeydown="if (event.keyCode == 13) document.getElementById('btnSearch').click()"><br>
                     
                     <input type="button" id="btnSearch2" value="SignUp" name="Submit2" onclick="signup()">
                     <input type="button" id="btnSearch" value="Login" name="Submit" onclick="login()">

@@ -339,10 +339,19 @@ input[type="checkbox"].graphic:checked + label {
   color: tomato;
   text-shadow: 0px 2px 2px #000000;
 }
+
+#msg3 {
+  color: tomato;
+  text-shadow: 0px 2px 2px #000000;
+  font-size: 2em;  
+  padding-top: 2em;
+}
 #email {
   float:left;  
   color: tomato;
   text-shadow: 0px 2px 2px #000000;
+  margin-bottom: 0.5em;
+  cursor: default;
 }
 #logout { 
   float:right;
@@ -350,11 +359,15 @@ input[type="checkbox"].graphic:checked + label {
   color: tomato;
   text-shadow: 0px 2px 2px #000000;
 }
+#logout:hover {
+    color: rgb(255, 246, 213);
+    text-shadow: none; 
+}
 a {
   text-decoration:none;
 }
 
-#msg2 {
+#msg2, .msg4 {
   position: relative;
   font-family: 'Exo', sans-serif;
   font-size: 16px;
@@ -362,12 +375,17 @@ a {
   color: #FFF6D5;
   padding-top: 3em;
 }
+.msg4 {
+  text-shadow: 0px 1px 0px #000000;
+  top: 3em;
+  left: 12em;
+}
 #msg2 span {
    color: tomato;
    cursor: pointer;
      text-shadow: 0px 1px 0px #000000;
  }
-#msg2 span:hover {
+#msg2 span:hover, .msg4:hover {
     text-shadow: none;
 
 }

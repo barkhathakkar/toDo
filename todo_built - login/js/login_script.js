@@ -8,7 +8,9 @@ function toggleInput() {
     document.getElementById('btnSearch').style.display = "none";
     document.getElementById('msg').innerHTML = "";
     document.getElementById('msg2').style.display = "none";
-
+   password.addEventListener("keypress", function() {
+    if (event.keyCode == 13) btnSearch2.click();
+    });
 }
 /* custom class saving value*/
 
@@ -31,6 +33,10 @@ function signup() {
                 document.getElementById('btnSearch2').style.display = "none";
                 document.getElementById('btnSearch').style.display = "block";
                 document.getElementById('msg2').style.display = "block";
+
+              /*  password.addEventListener("keypress", function() {
+                if (event.keyCode == 13) btnSearch.click();
+                });*/
 
                 console.log("Registration Successfull!!!");
 
@@ -67,11 +73,12 @@ function login() {
             console.log(app.User.isAuthenticated());
 
             console.log(newUser);
+
             window.location = 'index.html';
 
         }, function(err) {
 
-            console.log("error!!!!");
+            console.log("error!!");
             //console.log(result);        
             document.getElementById('msg').innerHTML = "Invalid!!..Please try again";
             document.getElementById('msg').style.display = "block";
@@ -83,10 +90,10 @@ function login() {
 
 
 }
-angular.module("demo", [])
-    .controller("login", ['$scope',
 
-
-
-
-    ]);
+function checkSession(){
+    var currentUser = app.User;
+      if(currentUser.isAuthenticated()){
+                    window.open("index.html","_self");
+                }
+   }
